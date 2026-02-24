@@ -88,6 +88,7 @@ const ExpenseController = {
         StorageManager.save();
         UIUpdater.updateAll();
         DOM.salaryErrorMessage.textContent = '';
+        DOM.salaryInput.value = '';
         UIHelper.showToast('Salary updated successfully!');
     },
     
