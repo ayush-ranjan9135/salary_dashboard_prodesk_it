@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash-Flow Tracker | Salary & Expense Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Header Section -->
+        <div class="header-section">
+            <header>
+                <div class="header-content">
+                    <div>
+                        <h1><i class="fas fa-wallet"></i> Cash-Flow Tracker</h1>
+                        <p>Track your salary and expenses in real-time</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Summary Section -->
+            <div class="summary-section">
+                <div class="summary-cards">
+                    <div class="card salary-card">
+                        <div class="card-icon"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="card-content">
+                            <h3>Total Salary</h3>
+                            <p class="amount" id="salaryDisplay">₹0</p>
+                        </div>
+                    </div>
+
+                    <div class="card expense-card">
+                        <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="card-content">
+                            <h3>Total Expenses</h3>
+                            <p class="amount" id="expenseDisplay">₹0</p>
+                        </div>
+                    </div>
+
+                    <div class="card balance-card">
+                        <div class="card-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="card-content">
+                            <h3>Remaining Balance</h3>
+                            <p class="amount" id="balanceDisplay">₹0</p>
+                        </div>
+                    </div>
+
+                    <div class="card progress-card">
+                        <div class="progress-circle" id="progressCircle">
+                            <svg width="80" height="80">
+                                <circle cx="40" cy="40" r="35" class="progress-bg"></circle>
+                                <circle cx="40" cy="40" r="35" class="progress-bar" id="progressBar"></circle>
+                            </svg>
+                            <div class="progress-text" id="progressText">0%</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Spent</h3>
+                            <p class="progress-label" id="progressLabel">Budget Status</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Insights Section -->
+            <div class="insights-section">
+                <div class="card insights-card">
+                    <h2><i class="fas fa-chart-line"></i> Data Insights</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="insight-content">
+                                <p class="insight-label">Highest Expense</p>
+                                <p class="insight-value" id="highestExpense">-</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                            <div class="insight-content">
+                                <p class="insight-label">Hotel Bills</p>
+                                <p class="insight-value" id="hotelBills">-</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="insight-content">
+                                <p class="insight-label">Average Expense</p>
+                                <p class="insight-value" id="averageExpense">-</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>
+                            <div class="insight-content">
+                                <p class="insight-label">Most Used Category</p>
+                                <p class="insight-value" id="mostUsedCategory">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set Salary Section -->
+            <div class="salary-input-section">
+                <div class="card salary-input-card">
+                    <h2><i class="fas fa-hand-holding-usd"></i> Set Your Salary</h2>
+                    <p class="section-description">Enter your monthly income to start tracking</p>
+                    
+                    <div class="form-group">
+                        <label for="salaryInput">Monthly Salary</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="salaryInput" placeholder="Enter your salary" min="0">
+                            <select id="currencySelect">
+                                <option value="INR">INR (₹)</option>
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="error-message" id="salaryErrorMessage"></div>
+                    
+                    <button class="btn btn-primary" id="setSalaryBtn">
+                        <i class="fas fa-check"></i> Set Salary
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="card">
+                    <h2><i class="fas fa-edit"></i> Add Expenses</h2>
+                    <p class="section-description">Track your daily spending</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expenseName">Expense Name</label>
+                            <input type="text" id="expenseName" placeholder="e.g., Groceries">
+                        </div>
+                        <div class="form-group">
+                            <label for="expenseAmount">Amount</label>
+                            <input type="number" id="expenseAmount" placeholder="0" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory">
+                            <option value="Food">🍔 Food</option>
+                            <option value="Travel">✈️ Travel</option>
+                            <option value="Bills">💡 Bills</option>
+                            <option value="Shopping">🛍️ Shopping</option>
+                            <option value="Other">📦 Other</option>
+                        </select>
+                    </div>
+
+                    <div class="error-message" id="errorMessage"></div>
+
+                    <button class="btn btn-primary" id="addExpenseBtn">
+                        <i class="fas fa-plus"></i> Add Expense
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expense List Section -->
+            <div class="expense-section">
+                <div class="card expense-list-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-list"></i> Expense List</h2>
+                        <div class="header-actions-group">
+                            <button class="btn btn-secondary" id="downloadPdfBtn">
+                                <i class="fas fa-download"></i> PDF
+                            </button>
+                            <button class="btn btn-secondary" id="exportJsonBtn">
+                                <i class="fas fa-file-export"></i> Export
+                            </button>
+                            <button class="btn btn-secondary" id="importJsonBtn">
+                                <i class="fas fa-file-import"></i> Import
+                            </button>
+                            <button class="btn btn-danger" id="resetMonthBtn">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="expense-filters">
+                        <input type="text" id="searchExpense" placeholder="🔍 Search expenses..." class="search-input">
+                        <select id="filterCategory" class="filter-select">
+                            <option value="All">All Categories</option>
+                            <option value="Food">🍔 Food</option>
+                            <option value="Travel">✈️ Travel</option>
+                            <option value="Bills">💡 Bills</option>
+                            <option value="Shopping">🛍️ Shopping</option>
+                            <option value="Other">📦 Other</option>
+                        </select>
+                    </div>
+
+                    <div id="expenseList" class="expense-list">
+                        <div class="empty-state-container">
+                            <i class="fas fa-receipt empty-icon"></i>
+                            <p class="empty-state">No expenses yet. Start tracking your spending!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="chart-section">
+                <div class="card chart-card">
+                    <h2><i class="fas fa-chart-pie"></i> Expense Overview</h2>
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Alert Section -->
+            <div class="alert-section">
+                <div class="alert alert-warning" id="budgetAlert" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Warning: Your remaining balance is below 20% of your salary!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <i class="fas fa-exclamation-circle modal-icon"></i>
+            <h3>Confirm Reset</h3>
+            <p>Are you sure you want to reset all data? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelReset">Cancel</button>
+                <button class="btn btn-danger" id="confirmReset">Reset All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden File Input -->
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
