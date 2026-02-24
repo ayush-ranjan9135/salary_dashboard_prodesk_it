@@ -13,7 +13,7 @@
 
 A premium fintech-grade web application for tracking salary and expenses with real-time calculations, data persistence, visualizations, and enterprise-level features.
 
-[🚀 Live Demo](#) • [📖 Documentation](#) • [🐛 Report Bug](#)
+[🚀 Live Demo](https://salary-dashboard-prodesk-it.vercel.app/) • [📖 GitHub Repo](https://github.com/ayush-ranjan9135/salary_dashboard_prodesk_it) • [🐛 Report Bug](https://github.com/ayush-ranjan9135/salary_dashboard_prodesk_it/issues)
 
 </div>
 
