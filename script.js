@@ -16,9 +16,20 @@ const AppState = {
 // ============================================
 // CONSTANTS
 // ============================================
-const CURRENCY_SYMBOLS = { INR: '₹', USD: '$', EUR: '€' };
-const ANIMATION_DURATION = 1000;
-const TOAST_DURATION = 3000;
+const CURRENCY_SYMBOLS = { 
+    INR: '₹', 
+    USD: '$', 
+    EUR: '€', 
+    GBP: '£', 
+    JPY: '¥', 
+    AUD: 'A$', 
+    CAD: 'C$', 
+    CHF: 'Fr', 
+    CNY: '¥', 
+    AED: 'د.إ' 
+};
+const ANIMATION_DURATION = 950;
+const TOAST_DURATION = 2800;
 const BUDGET_ALERT_THRESHOLD = 0.2;
 
 // ============================================
@@ -527,9 +538,6 @@ const ThemeManager = {
         
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        
-        const icon = DOM.themeToggle.querySelector('i');
-        icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     },
     
     load() {
@@ -537,7 +545,7 @@ const ThemeManager = {
         document.documentElement.setAttribute('data-theme', savedTheme);
         
         const icon = DOM.themeToggle.querySelector('i');
-        icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        icon.className = 'fas fa-adjust';
     }
 };
 
