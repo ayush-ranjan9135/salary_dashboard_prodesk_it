@@ -158,6 +158,9 @@ const ExpenseController = {
     }
 };
 
+// Make deleteExpense globally accessible for onclick
+window.deleteExpense = (id) => ExpenseController.deleteExpense(id);
+
 // ============================================
 // EXPENSE RENDERER
 // ============================================
@@ -193,7 +196,7 @@ const ExpenseRenderer = {
                     <p>${CURRENCY_SYMBOLS[AppState.baseCurrency]}${(expense.amount * AppState.exchangeRate).toFixed(2)}</p>
                     <div class="expense-meta">${formattedDate}</div>
                 </div>
-                <button class="delete-btn" onclick="ExpenseController.deleteExpense(${expense.id})">
+                <button class="delete-btn" onclick="deleteExpense(${expense.id})">
                     <i class="fas fa-trash"></i>
                 </button>
             `;
